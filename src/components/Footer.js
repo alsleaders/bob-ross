@@ -5,7 +5,7 @@ class Footer extends Component {
     return (
       <div>
         <footer>
-          <h6> Powered by ☕ and frustration. AL 2020. </h6>
+          <h6> Powered by ☕ and frustration AL 2020. </h6>
         </footer>
       </div>
     )

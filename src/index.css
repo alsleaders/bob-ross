@@ -4,25 +4,41 @@
 
 html {
   height: 100%;
-  background-color: aliceblue;
-  color: blue;
+  background-color: #e8f1f2; /*Anti-Flash White*/
+  color: #1b98e0; /*Bright Cerulean*/
+}
+
+header {
+  border: 0.1rem #13293d outset; /*Yankees Blue*/
+  color: #e8f1f2;
+  background-color: #006494; /*Sea Blue*/
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 h1,
+h4,
 p {
   margin: 5rem;
   text-align: center;
 }
 
+h4 {
+  color: #247ba0; /*Lapis Lazuli*/
+}
+
 body {
   margin: 0;
   min-height: 100%;
+  /*border: cornflowerblue inset 1rem;*/
 }
 
 footer {
-  inset: 1rem black;
-  color: gray;
-  background-color: indigo;
+  border: 0.1rem #13293d outset; /*Yankees Blue*/
+  color: #e8f1f2;
+  background-color: #006494; /*Sea Blue*/
   text-align: center;
   display: flex;
   justify-content: space-evenly;
