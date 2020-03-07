@@ -2,36 +2,63 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 const API = 'https://sdg-octodex.herokuapp.com/'
+const HexbotAPI = 'https://api.noopschallenge.com/hexbot?count=2'
 
+function getRandomInt() {
+  return Math.floor(Math.random() * Math.floor(149))
+}
 class HelloWorld extends Component {
   state = {
-    array: []
+    listOfCats: {},
+    boxColor: '',
+    borderColor: ''
   }
 
-  goGetTheCats() {
-    axios
-      .get(API)
-      .then(resp => {
-        console.log(resp)
-        console.log(resp.data)
-        console.log(resp.data.data)
-        return resp.data.data
+  componentDidMount() {
+    axios.get(HexbotAPI).then(resp => {
+      this.setState({
+        boxColor: resp.data.colors[0].value,
+        borderColor: resp.data.colors[1].value
       })
-      .then(dog => {
-        console.log(dog)
-        // this.setState({
-        //   array: dog
-        // })
-      })
-      .catch(error => {
-        alert('Please check your button and try again!')
-      })
+    })
+  }
+
+  goGetTheCats = () => {
+    axios.get(API).then(response => {
+      console.log(response.data.data)
+      this.setState({
+        listOfCats: response.data
+      }).then(console.log('hello'))
+    })
+    // axios.get('/api/location').then(resp => {
+    //   this.setState({
+    //     mapList: resp.data
+
+    // .catch(error => {
+    //   alert('Please check your button and try again!')
+    // })
   }
 
   render() {
     return (
       <>
         <button onClick={this.goGetTheCats}>Octocats</button>
+
+        <section
+          className="hex-color"
+          style={{ background: this.state.borderColor }}
+        >
+          <div className="boxShape" style={{ background: this.state.boxColor }}>
+            <p>
+              This is {this.state.boxColor} color box <br />
+              with a {this.state.listOfCats[2]} cat
+              <br />
+              with a {this.state.borderColor} border
+            </p>
+            <img>{this.state.listOfCats[2]}</img>
+          </div>
+        </section>
+
         <p>
           This is going to say something. <br />I haven't decided what yet.
         </p>
