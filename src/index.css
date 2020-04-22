@@ -32,15 +32,163 @@ h4 {
 body {
   margin: 0;
   min-height: 100%;
+  font: 16px / 1 sans-serif;
   /*border: cornflowerblue inset 1rem;*/
 }
 
-footer {
-  border: 0.1rem #13293d outset; /*Yankees Blue*/
-  color: #e8f1f2;
-  background-color: #006494; /*Sea Blue*/
-  text-align: center;
+.header img,
+.top-links {
+  padding: 15px 20px;
+}
+
+nav img {
+  height: 22px;
+  width: 177px;
+}
+
+.top-links a {
+  font-size: 13px;
+  font-weight: bold;
+  margin-left: 15px;
+  line-height: 25px;
+}
+
+.top-links a:hover {
+  color: #4183c4;
+  cursor: pointer;
+}
+
+.main-body {
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.outer-image {
+  border-bottom: 1px solid #cacaca;
+  margin: 0 12px 22px;
+}
+
+.image-area {
+  width: 424px;
+  height: 424px;
+  padding: 10px;
+  border: 1px solid #cacaca;
+  border-radius: 3px;
+}
+
+/* .image-area::after {
+  content: '';
+  height: 0;
+  width: 0;
+  border: 8px solid transparent;
+  border-top-color: #cacaca;
+  float: right;
+  position: relative;
+  right: 6px;
+  top: 0;
+} */
+
+.caption {
+  display: flex;
+  justify-content: space-between;
+}
+
+.caption p {
+  color: #cacaca;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+em {
+  color: black;
+  font-style: normal;
+}
+
+.name-pic {
+  display: flex;
   align-items: center;
+}
+
+.name-pic p {
+  color: #777;
+  font-weight: bold;
+}
+
+.name-pic img {
+  height: 28px;
+  width: 28px;
+  border-radius: 3px;
+  margin-left: 10px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #ddd;
+  padding: 15px 0;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.bottom-links {
+  display: flex;
+  align-items: center;
+}
+
+.bottom-links p {
+  font-size: 12px;
+  color: #4183c4;
+  margin: 12px 12px 12px 0;
+}
+
+i {
+  color: #ccc;
+  font-size: 24px;
+}
+
+.copyright {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.copyright p {
+  color: #777;
+  font-size: 12px;
+  margin: 0;
+  line-height: 18px;
+  margin-left: 5px;
+}
+
+@media only screen and (max-width: 460px) {
+  .header {
+    justify-content: center;
+    align-content: center;
+  }
+
+  .header img {
+    padding: 15px 0 0;
+  }
+
+  .top-links a {
+    margin: 0 15px;
+  }
+
+  .main-body {
+    display: flex;
+    justify-items: center;
+    width: 90vw;
+  }
+
+  footer {
+    border: 0.1rem #13293d outset; /*Yankees Blue*/
+    color: #e8f1f2;
+    background-color: #006494; /*Sea Blue*/
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
 }

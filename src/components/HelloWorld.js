@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Cat from './Cat'
 
-const API = 'https://sdg-octodex.herokuapp.com/'
+const API_URL = 'https://sdg-octodex.herokuapp.com/'
 const HexbotAPI = 'https://api.noopschallenge.com/hexbot?count=2'
 
 function getRandomInt() {
@@ -9,53 +10,77 @@ function getRandomInt() {
 }
 class HelloWorld extends Component {
   state = {
-    listOfCats: {},
-    boxColor: '',
-    borderColor: ''
+    cats: [],
+  }
+
+  goGetTheCats() {
+    fetch(`${API_URL}`)
+      .then((resp) => {
+        console.log(resp.json)
+        return resp.json()
+      })
+      .then((items) => {
+        console.log(items.data)
+        this.setState({ cats: items.data })
+      })
   }
 
   componentDidMount() {
-    axios.get(HexbotAPI).then(resp => {
+    axios.get(HexbotAPI).then((resp) => {
       this.setState({
         boxColor: resp.data.colors[0].value,
-        borderColor: resp.data.colors[1].value
+        borderColor: resp.data.colors[1].value,
       })
     })
   }
 
-  goGetTheCats = () => {
-    axios.get(API).then(response => {
-      console.log(response.data.data)
-      this.setState({
-        listOfCats: response.data
-      }).then(console.log('hello'))
-    })
-    // axios.get('/api/location').then(resp => {
-    //   this.setState({
-    //     mapList: resp.data
+  // goGetTheCats = () => {
+  //   fetch(`${API}`).then((response) => {
+  //     console.log(response)
+  //     this.setState({
+  //       listOfCats: response,
+  //     }).then(console.log('hello'))
+  //   })
+  //   axios.get('/api/location').then(resp => {
+  //     this.setState({
+  //       mapList: resp.data
 
-    // .catch(error => {
-    //   alert('Please check your button and try again!')
-    // })
-  }
+  //   .catch(error => {
+  //     alert('Please check your button and try again!')
+  //   })
+  // }
 
   render() {
     return (
       <>
-        <button onClick={this.goGetTheCats}>Octocats</button>
+        <button onClick={() => this.goGetTheCats()}>Octocats</button>
 
         <section
           className="hex-color"
           style={{ background: this.state.borderColor }}
         >
-          <div className="boxShape" style={{ background: this.state.boxColor }}>
-            <p>
-              This is {this.state.boxColor} color box <br />
-              with a {this.state.listOfCats[2]} cat
-              <br />
-              with a {this.state.borderColor} border
-            </p>
-            <img>{this.state.listOfCats[2]}</img>
+          <div
+            className="container boxShape"
+            style={{ background: this.state.boxColor }}
+          >
+            <section class="main-body">
+              <p>
+                This is {this.state.boxColor} color box <br />
+                {this.state.cats.map((cat) => {
+                  return (
+                    <Cat
+                      key={cat.name}
+                      image={cat.image}
+                      name={cat.name}
+                      number={cat.number}
+                      makerURL={cat.authors[0].image}
+                    />
+                  )
+                })}
+                <br />
+                with a {this.state.borderColor} border
+              </p>
+            </section>
           </div>
         </section>
 
